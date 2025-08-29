@@ -1,4 +1,5 @@
 import type { ButtonProps } from '../types'
+import theme from '../theme'
 
 interface CustomButtonProps extends ButtonProps {
   leftIcon?: React.ReactElement
@@ -23,31 +24,55 @@ function Button({
     onClick?.()
   }
 
-  const baseClasses = 'px-4 py-2 rounded font-medium transition-colors duration-200'
-  const sizeClasses = {
-    sm: 'text-sm px-3 py-1.5',
-    md: 'text-base px-4 py-2',
-    lg: 'text-lg px-6 py-3',
-  }
-  const variantClasses = {
-    solid: 'bg-blue-500 text-white hover:bg-blue-600',
-    outline: 'border border-blue-500 text-blue-500 hover:bg-blue-50',
-    ghost: 'text-blue-500 hover:bg-blue-50',
+  const getButtonStyles = () => {
+    const baseStyles = {
+      border: 'none',
+      borderRadius: '0.375rem',
+      fontWeight: '500',
+      cursor: disabled || loading ? 'not-allowed' : 'pointer',
+      transition: theme.transitions.button,
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '0.5rem',
+    }
+
+    const sizeStyles = theme.buttons.sizes[size]
+    const variantStyles = theme.buttons.variants[variant]
+
+    return {
+      ...baseStyles,
+      ...sizeStyles,
+      ...variantStyles,
+    }
   }
 
-  const classes = `${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${className}`
+  const buttonStyles = getButtonStyles()
 
   return (
     <button
       onClick={handleClick}
       disabled={disabled || loading}
-      className={classes}
+      style={buttonStyles}
+      className={className}
       {...props}
     >
-      {loading && <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />}
-      {!loading && leftIcon && <span className="mr-2">{leftIcon}</span>}
+      {loading && (
+        <span 
+          style={{
+            display: 'inline-block',
+            width: '1rem',
+            height: '1rem',
+            border: '2px solid currentColor',
+            borderTopColor: 'transparent',
+            borderRadius: '50%',
+            animation: 'spin 1s linear infinite',
+          }}
+        />
+      )}
+      {!loading && leftIcon && leftIcon}
       {children}
-      {rightIcon && <span className="ml-2">{rightIcon}</span>}
+      {rightIcon && rightIcon}
     </button>
   )
 }

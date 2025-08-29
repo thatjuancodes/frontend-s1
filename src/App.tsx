@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import theme from './theme'
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false)
@@ -7,28 +8,27 @@ function App() {
     setIsDarkMode(!isDarkMode)
   }
 
-  const bgColor = isDarkMode ? '#1a202c' : '#ffffff'
-  const textColor = isDarkMode ? '#ffffff' : '#1a202c'
-  const buttonBg = isDarkMode ? '#805ad5' : '#3182ce'
+  const colorTheme = isDarkMode ? theme.colors.dark : theme.colors.light
 
   return (
     <div style={{ 
       minHeight: '100vh', 
-      backgroundColor: bgColor, 
-      color: textColor,
-      transition: 'all 0.3s ease'
+      backgroundColor: colorTheme.background, 
+      color: colorTheme.text,
+      transition: theme.transitions.default
     }}>
       <div style={{ 
-        maxWidth: '1200px', 
-        margin: '0 auto', 
-        padding: '2rem',
+        ...theme.layout.container,
         textAlign: 'center'
       }}>
-        <h1 style={{ fontSize: '3rem', marginBottom: '2rem' }}>
+        <h1 style={{ ...theme.typography.h1 }}>
           Welcome to Your React App
         </h1>
 
-        <p style={{ fontSize: '1.125rem', marginBottom: '2rem', maxWidth: '600px', margin: '0 auto 2rem' }}>
+        <p style={{ 
+          ...theme.typography.body,
+          ...theme.layout.content
+        }}>
           This is a modern React application built with TypeScript, Vite, and Chakra UI.
           Follows best practices with functional components and proper error handling.
         </p>
@@ -36,20 +36,15 @@ function App() {
         <button
           onClick={toggleColorMode}
           style={{
-            backgroundColor: buttonBg,
-            color: 'white',
-            border: 'none',
-            padding: '0.75rem 1.5rem',
-            borderRadius: '0.375rem',
-            fontSize: '1rem',
-            cursor: 'pointer',
-            transition: 'background-color 0.2s ease'
+            ...theme.buttons.base,
+            backgroundColor: colorTheme.button,
+            color: colorTheme.buttonText,
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = isDarkMode ? '#9f7aea' : '#4299e1'
+            e.currentTarget.style.backgroundColor = colorTheme.buttonHover
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = buttonBg
+            e.currentTarget.style.backgroundColor = colorTheme.button
           }}
         >
           Toggle {isDarkMode ? 'Light' : 'Dark'} Mode

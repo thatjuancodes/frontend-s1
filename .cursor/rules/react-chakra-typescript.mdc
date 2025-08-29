@@ -42,6 +42,7 @@ React:
 - Use Chakra UI v3 for styling.
 - Use Chakra UI v3 for managing light/dark mode.
 - Implement responsive design with Chakra UI v3.
+- Use theme.ts for defining colors and theme related styling including light and dark mode settings.
 - Use mobile-first approach for responsive design.
 - Optimize images: WebP format, size data, lazy loading.
 - Define types or interfaces in separate file with correct directory management.
