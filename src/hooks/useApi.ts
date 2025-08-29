@@ -12,7 +12,7 @@ interface UseApiReturn<T> extends UseApiState<T> {
   reset: () => void
 }
 
-export function useApi<T = any>(): UseApiReturn<T> {
+export function useApi<T = unknown>(): UseApiReturn<T> {
   const [state, setState] = useState<UseApiState<T>>({
     data: null,
     loading: false,
