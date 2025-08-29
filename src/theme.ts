@@ -25,7 +25,7 @@ const headingRecipe = defineRecipe({
   },
 })
 
-// Define button recipe with blue colors
+// Define button recipe with compound variants
 const buttonRecipe = defineRecipe({
   className: 'chakra-button',
   base: {
@@ -40,26 +40,235 @@ const buttonRecipe = defineRecipe({
   },
   variants: {
     variant: {
-      solid: {
-        bg: 'blue.500',
-        color: 'white',
-        _hover: {
-          bg: 'blue.600',
-        },
-        _active: {
-          bg: 'blue.700',
-        },
+      solid: {},
+      outline: {
+        bg: 'transparent',
+        borderWidth: '1px',
+      },
+      ghost: {
+        bg: 'transparent',
       },
     },
+    colorScheme: {
+      blue: {},
+      green: {},
+      red: {},
+      orange: {},
+      purple: {},
+      gray: {},
+    },
     size: {
-      sm: { px: 12, py: 4, fontSize: 'sm' },
-      md: { px: 6, py: 5, fontSize: 'md' },
-      lg: { px: 24, py: 6, fontSize: 'lg' },
+      sm: { px: 8, py: 3, fontSize: 'sm' },
+      md: { px: 6, py: 2.5, fontSize: 'md' },
+      lg: { px: 12, py: 3, fontSize: 'lg' },
     },
   },
+  compoundVariants: [
+    // Blue solid
+    {
+      variant: 'solid',
+      colorScheme: 'blue',
+      css: {
+        bg: 'blue.500',
+        color: 'white',
+        _hover: { bg: 'blue.600' },
+        _active: { bg: 'blue.700' },
+      },
+    },
+    // Blue outline
+    {
+      variant: 'outline',
+      colorScheme: 'blue',
+      css: {
+        color: 'blue.500',
+        borderColor: 'blue.500',
+        _hover: { 
+          bg: 'blue.50',
+          borderColor: 'blue.600',
+        },
+        _active: { bg: 'blue.100' },
+      },
+    },
+    // Blue ghost
+    {
+      variant: 'ghost',
+      colorScheme: 'blue',
+      css: {
+        color: 'blue.500',
+        _hover: { bg: 'blue.50' },
+        _active: { bg: 'blue.100' },
+      },
+    },
+    // Green variants
+    {
+      variant: 'solid',
+      colorScheme: 'green',
+      css: {
+        bg: 'green.500',
+        color: 'white',
+        _hover: { bg: 'green.600' },
+        _active: { bg: 'green.700' },
+      },
+    },
+    {
+      variant: 'outline',
+      colorScheme: 'green',
+      css: {
+        color: 'green.500',
+        borderColor: 'green.500',
+        _hover: { 
+          bg: 'green.50',
+          borderColor: 'green.600',
+        },
+        _active: { bg: 'green.100' },
+      },
+    },
+    {
+      variant: 'ghost',
+      colorScheme: 'green',
+      css: {
+        color: 'green.500',
+        _hover: { bg: 'green.50' },
+        _active: { bg: 'green.100' },
+      },
+    },
+    // Red variants
+    {
+      variant: 'solid',
+      colorScheme: 'red',
+      css: {
+        bg: 'red.500',
+        color: 'white',
+        _hover: { bg: 'red.600' },
+        _active: { bg: 'red.700' },
+      },
+    },
+    {
+      variant: 'outline',
+      colorScheme: 'red',
+      css: {
+        color: 'red.500',
+        borderColor: 'red.500',
+        _hover: { 
+          bg: 'red.50',
+          borderColor: 'red.600',
+        },
+        _active: { bg: 'red.100' },
+      },
+    },
+    {
+      variant: 'ghost',
+      colorScheme: 'red',
+      css: {
+        color: 'red.500',
+        _hover: { bg: 'red.50' },
+        _active: { bg: 'red.100' },
+      },
+    },
+    // Orange variants
+    {
+      variant: 'solid',
+      colorScheme: 'orange',
+      css: {
+        bg: 'orange.500',
+        color: 'white',
+        _hover: { bg: 'orange.600' },
+        _active: { bg: 'orange.700' },
+      },
+    },
+    {
+      variant: 'outline',
+      colorScheme: 'orange',
+      css: {
+        color: 'orange.500',
+        borderColor: 'orange.500',
+        _hover: { 
+          bg: 'orange.50',
+          borderColor: 'orange.600',
+        },
+        _active: { bg: 'orange.100' },
+      },
+    },
+    {
+      variant: 'ghost',
+      colorScheme: 'orange',
+      css: {
+        color: 'orange.500',
+        _hover: { bg: 'orange.50' },
+        _active: { bg: 'orange.100' },
+      },
+    },
+    // Purple variants
+    {
+      variant: 'solid',
+      colorScheme: 'purple',
+      css: {
+        bg: 'purple.500',
+        color: 'white',
+        _hover: { bg: 'purple.600' },
+        _active: { bg: 'purple.700' },
+      },
+    },
+    {
+      variant: 'outline',
+      colorScheme: 'purple',
+      css: {
+        color: 'purple.500',
+        borderColor: 'purple.500',
+        _hover: { 
+          bg: 'purple.50',
+          borderColor: 'purple.600',
+        },
+        _active: { bg: 'purple.100' },
+      },
+    },
+    {
+      variant: 'ghost',
+      colorScheme: 'purple',
+      css: {
+        color: 'purple.500',
+        _hover: { bg: 'purple.50' },
+        _active: { bg: 'purple.100' },
+      },
+    },
+    // Gray variants
+    {
+      variant: 'solid',
+      colorScheme: 'gray',
+      css: {
+        bg: 'gray.500',
+        color: 'white',
+        _hover: { bg: 'gray.600' },
+        _active: { bg: 'gray.700' },
+      },
+    },
+    {
+      variant: 'outline',
+      colorScheme: 'gray',
+      css: {
+        color: 'gray.500',
+        borderColor: 'gray.500',
+        _hover: { 
+          bg: 'gray.50',
+          borderColor: 'gray.600',
+        },
+        _active: { bg: 'gray.100' },
+      },
+    },
+    {
+      variant: 'ghost',
+      colorScheme: 'gray',
+      css: {
+        color: 'gray.500',
+        _hover: { bg: 'gray.50' },
+        _active: { bg: 'gray.100' },
+      },
+    },
+  ],
   defaultVariants: {
     variant: 'solid',
     size: 'md',
+    colorScheme: 'blue',
   },
 })
 

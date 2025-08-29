@@ -1,5 +1,6 @@
 import { Box, Container, Heading, Text, Button } from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
+import ErrorTest from '@/components/ErrorTest'
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false)
@@ -67,12 +68,18 @@ function App() {
           Follows best practices with functional components and proper error handling.
         </Text>
 
-        <Button
-          onClick={toggleColorMode}
-          size={{ base: "md", md: "lg" }}
-        >
-          Toggle {isDarkMode ? 'Light' : 'Dark'} Mode
-        </Button>
+        <Box display="flex" flexDirection={{ base: "column", md: "row" }} gap={4} alignItems="center" justifyContent="center">
+          <Button
+            onClick={toggleColorMode}
+            variant="solid"
+            colorScheme="blue"
+            size={{ base: "md", md: "lg" }}
+          >
+            Toggle {isDarkMode ? 'Light' : 'Dark'} Mode
+          </Button>
+          
+          {process.env.NODE_ENV === 'development' && <ErrorTest />}
+        </Box>
       </Container>
     </Box>
   )
