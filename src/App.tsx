@@ -1,58 +1,72 @@
-import { useState } from 'react'
-import theme from './theme'
+import { Box, Container, Heading, Text, Button } from '@chakra-ui/react'
+import { useState, useEffect } from 'react'
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false)
+
+  useEffect(() => {
+    // Check for system preference on mount
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    setIsDarkMode(mediaQuery.matches)
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsDarkMode(e.matches)
+    }
+
+    mediaQuery.addEventListener('change', handleChange)
+    return () => mediaQuery.removeEventListener('change', handleChange)
+  }, [])
 
   const toggleColorMode = () => {
     setIsDarkMode(!isDarkMode)
   }
 
-  const colorTheme = isDarkMode ? theme.colors.dark : theme.colors.light
-
   return (
-    <div style={{ 
-      minHeight: '100vh', 
-      backgroundColor: colorTheme.background, 
-      color: colorTheme.text,
-      transition: theme.transitions.default
-    }}>
-      <div style={{ 
-        ...theme.layout.container,
-        textAlign: 'center'
-      }}>
-        <h1 style={{ ...theme.typography.h1 }}>
+    <Box 
+      minH="100vh" 
+      py={8} 
+      bg={isDarkMode ? '#2e2e2e' : '#f4f4f4'}
+      color={isDarkMode ? '#f4f4f4' : '#2e2e2e'}
+    >
+      <Container maxW="container.lg" textAlign="center">
+        <Heading
+          as="h1" 
+          size="4xl"
+          my={8}
+          fontWeight="600"
+        >
           Frontend - S1
-        </h1>
+        </Heading>
 
-        <h3 style={{ ...theme.typography.h2 }}>Vanilla React + Typescript + Chakra UIv3</h3>
+        <Heading
+          as="h2" 
+          size="2xl"
+          mb={6}
+          fontWeight="600"
+        >
+          Vanilla React + TypeScript + Chakra UI v3
+        </Heading>
 
-        <p style={{ 
-          ...theme.typography.body,
-          ...theme.layout.content
-        }}>
+        <Text
+          fontSize="lg" 
+          mb={8}
+          maxW="600px"
+          mx="auto"
+          lineHeight="tall"
+        >
           This is a modern React application built with TypeScript, Vite, and Chakra UI.
           Follows best practices with functional components and proper error handling.
-        </p>
+        </Text>
 
-        <button
+        <Button
           onClick={toggleColorMode}
-          style={{
-            ...theme.buttons.base,
-            backgroundColor: colorTheme.button,
-            color: colorTheme.buttonText,
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = colorTheme.buttonHover
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = colorTheme.button
-          }}
+          colorScheme="blue"
+          size="lg"
         >
           Toggle {isDarkMode ? 'Light' : 'Dark'} Mode
-        </button>
-      </div>
-    </div>
+        </Button>
+      </Container>
+    </Box>
   )
 }
 
