@@ -1,5 +1,42 @@
 import { createSystem, defaultConfig, defineRecipe } from '@chakra-ui/react'
 
+// Helper function to generate color scheme styles for buttons
+function getColorSchemeStyles(variant: string, colorScheme: string) {
+  const baseColor = `${colorScheme}.500`
+  const hoverColor = `${colorScheme}.600`
+  const activeColor = `${colorScheme}.700`
+  const lightColor = `${colorScheme}.50`
+  const lightActiveColor = `${colorScheme}.100`
+
+  switch (variant) {
+    case 'solid':
+      return {
+        bg: baseColor,
+        color: 'white',
+        _hover: { bg: hoverColor },
+        _active: { bg: activeColor },
+      }
+    case 'outline':
+      return {
+        color: baseColor,
+        borderColor: baseColor,
+        _hover: { 
+          bg: lightColor,
+          borderColor: hoverColor,
+        },
+        _active: { bg: lightActiveColor },
+      }
+    case 'ghost':
+      return {
+        color: baseColor,
+        _hover: { bg: lightColor },
+        _active: { bg: lightActiveColor },
+      }
+    default:
+      return {}
+  }
+}
+
 // Define heading recipe with proper sizes and font
 const headingRecipe = defineRecipe({
   className: 'chakra-heading',
@@ -25,13 +62,16 @@ const headingRecipe = defineRecipe({
   },
 })
 
-// Define button recipe with compound variants
+// Define button recipe with compound variants (refactored for maintainability)
+const colorSchemes = ['blue', 'green', 'red', 'orange', 'purple', 'gray'] as const
+const variants = ['solid', 'outline', 'ghost'] as const
+
 const buttonRecipe = defineRecipe({
   className: 'chakra-button',
   base: {
     fontWeight: 'semibold',
     borderRadius: 'md',
-    transition: 'all 0.2s',
+    transition: 'all-normal',
     cursor: 'pointer',
     _disabled: {
       opacity: 0.4,
@@ -49,222 +89,21 @@ const buttonRecipe = defineRecipe({
         bg: 'transparent',
       },
     },
-    colorScheme: {
-      blue: {},
-      green: {},
-      red: {},
-      orange: {},
-      purple: {},
-      gray: {},
-    },
+    colorScheme: Object.fromEntries(colorSchemes.map(color => [color, {}])),
     size: {
-      sm: { px: 8, py: 3, fontSize: 'sm' },
-      md: { px: 6, py: 2.5, fontSize: 'md' },
-      lg: { px: 12, py: 3, fontSize: 'lg' },
+      sm: { px: 3, py: 2, fontSize: 'sm' },
+      md: { px: 4, py: 2.5, fontSize: 'md' },
+      lg: { px: 6, py: 3, fontSize: 'lg' },
     },
   },
-  compoundVariants: [
-    // Blue solid
-    {
-      variant: 'solid',
-      colorScheme: 'blue',
-      css: {
-        bg: 'blue.500',
-        color: 'white',
-        _hover: { bg: 'blue.600' },
-        _active: { bg: 'blue.700' },
-      },
-    },
-    // Blue outline
-    {
-      variant: 'outline',
-      colorScheme: 'blue',
-      css: {
-        color: 'blue.500',
-        borderColor: 'blue.500',
-        _hover: { 
-          bg: 'blue.50',
-          borderColor: 'blue.600',
-        },
-        _active: { bg: 'blue.100' },
-      },
-    },
-    // Blue ghost
-    {
-      variant: 'ghost',
-      colorScheme: 'blue',
-      css: {
-        color: 'blue.500',
-        _hover: { bg: 'blue.50' },
-        _active: { bg: 'blue.100' },
-      },
-    },
-    // Green variants
-    {
-      variant: 'solid',
-      colorScheme: 'green',
-      css: {
-        bg: 'green.500',
-        color: 'white',
-        _hover: { bg: 'green.600' },
-        _active: { bg: 'green.700' },
-      },
-    },
-    {
-      variant: 'outline',
-      colorScheme: 'green',
-      css: {
-        color: 'green.500',
-        borderColor: 'green.500',
-        _hover: { 
-          bg: 'green.50',
-          borderColor: 'green.600',
-        },
-        _active: { bg: 'green.100' },
-      },
-    },
-    {
-      variant: 'ghost',
-      colorScheme: 'green',
-      css: {
-        color: 'green.500',
-        _hover: { bg: 'green.50' },
-        _active: { bg: 'green.100' },
-      },
-    },
-    // Red variants
-    {
-      variant: 'solid',
-      colorScheme: 'red',
-      css: {
-        bg: 'red.500',
-        color: 'white',
-        _hover: { bg: 'red.600' },
-        _active: { bg: 'red.700' },
-      },
-    },
-    {
-      variant: 'outline',
-      colorScheme: 'red',
-      css: {
-        color: 'red.500',
-        borderColor: 'red.500',
-        _hover: { 
-          bg: 'red.50',
-          borderColor: 'red.600',
-        },
-        _active: { bg: 'red.100' },
-      },
-    },
-    {
-      variant: 'ghost',
-      colorScheme: 'red',
-      css: {
-        color: 'red.500',
-        _hover: { bg: 'red.50' },
-        _active: { bg: 'red.100' },
-      },
-    },
-    // Orange variants
-    {
-      variant: 'solid',
-      colorScheme: 'orange',
-      css: {
-        bg: 'orange.500',
-        color: 'white',
-        _hover: { bg: 'orange.600' },
-        _active: { bg: 'orange.700' },
-      },
-    },
-    {
-      variant: 'outline',
-      colorScheme: 'orange',
-      css: {
-        color: 'orange.500',
-        borderColor: 'orange.500',
-        _hover: { 
-          bg: 'orange.50',
-          borderColor: 'orange.600',
-        },
-        _active: { bg: 'orange.100' },
-      },
-    },
-    {
-      variant: 'ghost',
-      colorScheme: 'orange',
-      css: {
-        color: 'orange.500',
-        _hover: { bg: 'orange.50' },
-        _active: { bg: 'orange.100' },
-      },
-    },
-    // Purple variants
-    {
-      variant: 'solid',
-      colorScheme: 'purple',
-      css: {
-        bg: 'purple.500',
-        color: 'white',
-        _hover: { bg: 'purple.600' },
-        _active: { bg: 'purple.700' },
-      },
-    },
-    {
-      variant: 'outline',
-      colorScheme: 'purple',
-      css: {
-        color: 'purple.500',
-        borderColor: 'purple.500',
-        _hover: { 
-          bg: 'purple.50',
-          borderColor: 'purple.600',
-        },
-        _active: { bg: 'purple.100' },
-      },
-    },
-    {
-      variant: 'ghost',
-      colorScheme: 'purple',
-      css: {
-        color: 'purple.500',
-        _hover: { bg: 'purple.50' },
-        _active: { bg: 'purple.100' },
-      },
-    },
-    // Gray variants
-    {
-      variant: 'solid',
-      colorScheme: 'gray',
-      css: {
-        bg: 'gray.500',
-        color: 'white',
-        _hover: { bg: 'gray.600' },
-        _active: { bg: 'gray.700' },
-      },
-    },
-    {
-      variant: 'outline',
-      colorScheme: 'gray',
-      css: {
-        color: 'gray.500',
-        borderColor: 'gray.500',
-        _hover: { 
-          bg: 'gray.50',
-          borderColor: 'gray.600',
-        },
-        _active: { bg: 'gray.100' },
-      },
-    },
-    {
-      variant: 'ghost',
-      colorScheme: 'gray',
-      css: {
-        color: 'gray.500',
-        _hover: { bg: 'gray.50' },
-        _active: { bg: 'gray.100' },
-      },
-    },
-  ],
+  // Generate compound variants dynamically
+  compoundVariants: colorSchemes.flatMap(colorScheme =>
+    variants.map(variant => ({
+      variant,
+      colorScheme,
+      css: getColorSchemeStyles(variant, colorScheme),
+    }))
+  ),
   defaultVariants: {
     variant: 'solid',
     size: 'md',
@@ -280,6 +119,21 @@ const customConfig = {
       fonts: {
         heading: { value: 'Montserrat, sans-serif' },
         body: { value: 'Roboto, sans-serif' },
+      },
+      breakpoints: {
+        sm: { value: '640px' },
+        md: { value: '768px' },
+        lg: { value: '1024px' },
+        xl: { value: '1280px' },
+        '2xl': { value: '1536px' },
+      },
+      transitions: {
+        fast: { value: '150ms ease' },
+        normal: { value: '200ms ease' },
+        slow: { value: '300ms ease' },
+        'all-fast': { value: 'all 150ms ease' },
+        'all-normal': { value: 'all 200ms ease' },
+        'all-slow': { value: 'all 300ms ease' },
       },
       radii: {
         none: { value: '0' },
