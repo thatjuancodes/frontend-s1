@@ -1,3 +1,6 @@
+/* Google Fonts imports */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+
 /* Global styles and animations */
 @keyframes spin {
   from {
@@ -13,7 +16,7 @@
   --button-bg: #3182ce;
   --button-hover: #4299e1;
   --button-text: #ffffff;
-  --hover-bg: #f7fafc;
+  --hover-bg: #e8e8e8;
 }
 
 /* Dark mode CSS variables */
@@ -22,6 +25,6 @@
     --button-bg: #805ad5;
     --button-hover: #9f7aea;
     --button-text: #ffffff;
-    --hover-bg: #2d3748;
+    --hover-bg: #3a3a3a;
   }
 }

@@ -22,8 +22,10 @@ function App() {
         textAlign: 'center'
       }}>
         <h1 style={{ ...theme.typography.h1 }}>
-          Welcome to Your React App
+          Frontend - S1
         </h1>
+
+        <h3 style={{ ...theme.typography.h2 }}>Vanilla React + Typescript + Chakra UIv3</h3>
 
         <p style={{ 
           ...theme.typography.body,

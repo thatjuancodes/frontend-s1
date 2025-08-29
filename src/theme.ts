@@ -1,22 +1,76 @@
 // Theme configuration with comprehensive styling constants
 export const colors = {
   light: {
-    background: '#ffffff',
-    text: '#1a202c',
+    background: '#f4f4f4',
+    text: '#2e2e2e',
     button: '#3182ce',
     buttonHover: '#4299e1',
     buttonText: '#ffffff',
     border: '#e2e8f0',
-    hover: '#f7fafc',
+    hover: '#e8e8e8',
   },
   dark: {
-    background: '#1a202c',
-    text: '#ffffff',
+    background: '#2e2e2e',
+    text: '#f4f4f4',
     button: '#805ad5',
     buttonHover: '#9f7aea',
     buttonText: '#ffffff',
     border: '#4a5568',
-    hover: '#2d3748',
+    hover: '#3a3a3a',
+  },
+}
+
+export const fonts = {
+  primary: 'Montserrat, sans-serif',
+  secondary: 'Roboto, sans-serif',
+}
+
+export const typography = {
+  h1: {
+    fontFamily: fonts.primary,
+    fontSize: '3rem',
+    marginBottom: '2rem',
+    fontWeight: '600',
+  },
+  h2: {
+    fontFamily: fonts.primary,
+    fontSize: '2.25rem',
+    marginBottom: '1.5rem',
+    fontWeight: '600',
+  },
+  h3: {
+    fontFamily: fonts.primary,
+    fontSize: '1.875rem',
+    marginBottom: '1rem',
+    fontWeight: '600',
+  },
+  body: {
+    fontFamily: fonts.secondary,
+    fontSize: '1.125rem',
+    marginBottom: '2rem',
+    fontWeight: '400',
+    lineHeight: '1.6',
+  },
+  paragraph: {
+    fontFamily: fonts.secondary,
+    fontSize: '1rem',
+    marginBottom: '1rem',
+    fontWeight: '400',
+    lineHeight: '1.6',
+  },
+  list: {
+    fontFamily: fonts.secondary,
+    fontSize: '1rem',
+    marginBottom: '0.5rem',
+    fontWeight: '400',
+    lineHeight: '1.6',
+  },
+  link: {
+    fontFamily: fonts.secondary,
+    fontSize: '1rem',
+    fontWeight: '500',
+    textDecoration: 'underline',
+    cursor: 'pointer',
   },
 }
 
@@ -28,17 +82,6 @@ export const spacing = {
   xl: '2rem',
   '2xl': '3rem',
   '3xl': '4rem',
-}
-
-export const typography = {
-  h1: {
-    fontSize: '3rem',
-    marginBottom: '2rem',
-  },
-  body: {
-    fontSize: '1.125rem',
-    marginBottom: '2rem',
-  },
 }
 
 export const layout = {
@@ -61,6 +104,8 @@ export const buttons = {
     fontSize: '1rem',
     cursor: 'pointer',
     transition: 'background-color 0.2s ease',
+    fontFamily: fonts.secondary,
+    fontWeight: '500',
   },
   sizes: {
     sm: {
@@ -109,8 +154,9 @@ export const transitions = {
 
 export default {
   colors,
-  spacing,
+  fonts,
   typography,
+  spacing,
   layout,
   buttons,
   transitions,
