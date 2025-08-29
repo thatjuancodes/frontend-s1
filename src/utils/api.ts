@@ -44,3 +44,4 @@ export function handleApiError(error: string): string {
   
   return error || 'An unexpected error occurred.'
 }
+

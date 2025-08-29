@@ -20,3 +20,4 @@ export interface ButtonProps {
   variant?: 'solid' | 'outline' | 'ghost'
   size?: 'sm' | 'md' | 'lg'
 }
+
