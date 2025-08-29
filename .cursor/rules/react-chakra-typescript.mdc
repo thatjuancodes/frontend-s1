@@ -45,6 +45,7 @@ React:
 - Use theme.ts for defining colors and theme related styling including light and dark mode settings.
 - Use mobile-first approach for responsive design.
 - Optimize images: WebP format, size data, lazy loading.
+- Use path aliases for imports i.e. (@/components) 
 - Define types or interfaces in separate file with correct directory management.
 
 Dependencies:

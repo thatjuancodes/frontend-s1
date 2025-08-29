@@ -1,5 +1,5 @@
 import { Button as ChakraButton, Spinner } from '@chakra-ui/react'
-import type { ButtonProps } from '../types'
+import type { ButtonProps } from '@/types'
 
 interface CustomButtonProps extends ButtonProps {
   leftIcon?: React.ReactElement
