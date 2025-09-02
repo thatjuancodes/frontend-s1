@@ -14,6 +14,7 @@ function Button({
   loading = false,
   variant = 'solid',
   size = 'md',
+  colorScheme = 'blue',
   leftIcon,
   rightIcon,
   className = '',
@@ -25,6 +26,7 @@ function Button({
       disabled={disabled || loading}
       variant={variant}
       size={size}
+      colorScheme={colorScheme}
       className={className}
       {...props}
     >

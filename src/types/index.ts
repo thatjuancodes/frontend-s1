@@ -19,6 +19,7 @@ export interface ButtonProps {
   loading?: boolean
   variant?: 'solid' | 'outline' | 'ghost'
   size?: 'sm' | 'md' | 'lg'
+  colorScheme?: 'blue' | 'green' | 'red' | 'orange' | 'purple' | 'gray'
 }
 
 export interface ErrorBoundaryState {
